@@ -1,0 +1,29 @@
+| =  20 a |
+MOV R1, 
+
+| =  6 b |
+MOV R2, 
+
+| + 10 a c |
+MOV R3, 10
+MOV R4, c
+ADD R4, R32765, R3
+
+| * 6 c t5 |
+MOV R5, 6
+MOV R6, t5
+MUL R6, R-1, R5
+
+| - t5 a t6 |
+MOV R7, t6
+SUB R7, R1, R6
+
+| * 88 c t7 |
+MOV R8, 88
+MOV R9, t7
+MUL R9, R-1, R8
+
+| + t7 t6 d |
+MOV R10, d
+ADD R10, R7, R9
+

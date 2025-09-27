@@ -1,0 +1,1274 @@
+Grammar
+
+    0 $accept: Statement $end
+
+    1 IfStmt: If '(' Expression ')' Then Statement Done
+    2       | If '(' Expression ')' Then Statement Done Else Statement
+
+    3 If: IF
+
+    4 Else: ELSE
+
+    5 Done: ε
+
+    6 Then: ε
+
+    7 WhileLoop: While '(' Expression ')' Then1 Statement Done1
+
+    8 While: WHILE
+
+    9 Then1: ε
+
+   10 Done1: ε
+
+   11 Statement: '{' StatementList '}'
+   12          | '{' '}'
+   13          | Expressions
+   14          | IfStmt
+   15          | WhileLoop
+
+   16 Expressions: ';'
+   17            | Expression ';'
+
+   18 StatementList: StatementList Statement
+   19              | Statement
+
+   20 Expression: DatatypeAssignments
+   21           | Expression ',' DatatypeAssignments
+
+   22 DatatypeAssignments: DATATYPE Assignments
+   23                    | Assignments
+
+   24 Assignments: ExpressionLoop
+   25            | IDENTIFIER '=' Assignments
+
+   26 ExpressionLoop: LogicalAndAritmeticExpression
+   27               | LogicalAndAritmeticExpression '?' ExpressionLoop ':' ExpressionLoop
+
+   28 LogicalAndAritmeticExpression: Term AND Term
+   29                              | Term OR Term
+   30                              | Term EE Term
+   31                              | Term NE Term
+   32                              | Term LE Term
+   33                              | Term GE Term
+   34                              | Term '<' Term
+   35                              | Term '>' Term
+   36                              | Term '|' Term
+   37                              | Term '&' Term
+   38                              | Term '^' Term
+   39                              | Term '+' Term
+   40                              | Term '-' Term
+   41                              | Term '*' Term
+   42                              | Term '/' Term
+   43                              | Term '%' Term
+   44                              | '!' Term
+   45                              | UP Term
+   46                              | UM Term
+   47                              | Term UP
+   48                              | Term UM
+   49                              | Term
+
+   50 Term: NUMBER
+   51     | IDENTIFIER
+   52     | '-' NUMBER
+   53     | '-' IDENTIFIER
+   54     | '(' Expression ')'
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '!' (33) 44
+    '%' (37) 43
+    '&' (38) 37
+    '(' (40) 1 2 7 54
+    ')' (41) 1 2 7 54
+    '*' (42) 41
+    '+' (43) 39
+    ',' (44) 21
+    '-' (45) 40 52 53
+    '/' (47) 42
+    ':' (58) 27
+    ';' (59) 16 17
+    '<' (60) 34
+    '=' (61) 25
+    '>' (62) 35
+    '?' (63) 27
+    '^' (94) 38
+    '{' (123) 11 12
+    '|' (124) 36
+    '}' (125) 11 12
+    error (256)
+    OR (258) 29
+    AND (259) 28
+    EE (260) 30
+    NE (261) 31
+    GE (262) 33
+    LE (263) 32
+    UP (264) 45 47
+    UM (265) 46 48
+    IF (266) 3
+    ELSE (267) 4
+    NUMBER <str> (268) 50 52
+    IDENTIFIER <str> (269) 25 51 53
+    DATATYPE <str> (270) 22
+    WHILE (271) 8
+
+
+Nonterminals, with rules where they appear
+
+    $accept (37)
+        on left: 0
+    IfStmt (38)
+        on left: 1 2
+        on right: 14
+    If (39)
+        on left: 3
+        on right: 1 2
+    Else (40)
+        on left: 4
+        on right: 2
+    Done (41)
+        on left: 5
+        on right: 1 2
+    Then (42)
+        on left: 6
+        on right: 1 2
+    WhileLoop (43)
+        on left: 7
+        on right: 15
+    While (44)
+        on left: 8
+        on right: 7
+    Then1 (45)
+        on left: 9
+        on right: 7
+    Done1 (46)
+        on left: 10
+        on right: 7
+    Statement <node> (47)
+        on left: 11 12 13 14 15
+        on right: 0 1 2 7 18 19
+    Expressions <node> (48)
+        on left: 16 17
+        on right: 13
+    StatementList (49)
+        on left: 18 19
+        on right: 11 18
+    Expression <node> (50)
+        on left: 20 21
+        on right: 1 2 7 17 21 54
+    DatatypeAssignments <node> (51)
+        on left: 22 23
+        on right: 20 21
+    Assignments <node> (52)
+        on left: 24 25
+        on right: 22 23 25
+    ExpressionLoop <node> (53)
+        on left: 26 27
+        on right: 24 27
+    LogicalAndAritmeticExpression <node> (54)
+        on left: 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+        on right: 26 27
+    Term <node> (55)
+        on left: 50 51 52 53 54
+        on right: 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+
+
+State 0
+
+    0 $accept: • Statement $end
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    IF          shift, and go to state 6
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+    WHILE       shift, and go to state 10
+    '{'         shift, and go to state 11
+    ';'         shift, and go to state 12
+
+    IfStmt                         go to state 13
+    If                             go to state 14
+    WhileLoop                      go to state 15
+    While                          go to state 16
+    Statement                      go to state 17
+    Expressions                    go to state 18
+    Expression                     go to state 19
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 1
+
+   52 Term: '-' • NUMBER
+   53     | '-' • IDENTIFIER
+
+    NUMBER      shift, and go to state 25
+    IDENTIFIER  shift, and go to state 26
+
+
+State 2
+
+   44 LogicalAndAritmeticExpression: '!' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 28
+
+
+State 3
+
+   45 LogicalAndAritmeticExpression: UP • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 29
+
+
+State 4
+
+   46 LogicalAndAritmeticExpression: UM • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 30
+
+
+State 5
+
+   54 Term: '(' • Expression ')'
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+
+    Expression                     go to state 31
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 6
+
+    3 If: IF •
+
+    $default  reduce using rule 3 (If)
+
+
+State 7
+
+   50 Term: NUMBER •
+
+    $default  reduce using rule 50 (Term)
+
+
+State 8
+
+   25 Assignments: IDENTIFIER • '=' Assignments
+   51 Term: IDENTIFIER •
+
+    '='  shift, and go to state 32
+
+    $default  reduce using rule 51 (Term)
+
+
+State 9
+
+   22 DatatypeAssignments: DATATYPE • Assignments
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+
+    Assignments                    go to state 33
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 10
+
+    8 While: WHILE •
+
+    $default  reduce using rule 8 (While)
+
+
+State 11
+
+   11 Statement: '{' • StatementList '}'
+   12          | '{' • '}'
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    IF          shift, and go to state 6
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+    WHILE       shift, and go to state 10
+    '{'         shift, and go to state 11
+    '}'         shift, and go to state 34
+    ';'         shift, and go to state 12
+
+    IfStmt                         go to state 13
+    If                             go to state 14
+    WhileLoop                      go to state 15
+    While                          go to state 16
+    Statement                      go to state 35
+    Expressions                    go to state 18
+    StatementList                  go to state 36
+    Expression                     go to state 19
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 12
+
+   16 Expressions: ';' •
+
+    $default  reduce using rule 16 (Expressions)
+
+
+State 13
+
+   14 Statement: IfStmt •
+
+    $default  reduce using rule 14 (Statement)
+
+
+State 14
+
+    1 IfStmt: If • '(' Expression ')' Then Statement Done
+    2       | If • '(' Expression ')' Then Statement Done Else Statement
+
+    '('  shift, and go to state 37
+
+
+State 15
+
+   15 Statement: WhileLoop •
+
+    $default  reduce using rule 15 (Statement)
+
+
+State 16
+
+    7 WhileLoop: While • '(' Expression ')' Then1 Statement Done1
+
+    '('  shift, and go to state 38
+
+
+State 17
+
+    0 $accept: Statement • $end
+
+    $end  shift, and go to state 39
+
+
+State 18
+
+   13 Statement: Expressions •
+
+    $default  reduce using rule 13 (Statement)
+
+
+State 19
+
+   17 Expressions: Expression • ';'
+   21 Expression: Expression • ',' DatatypeAssignments
+
+    ','  shift, and go to state 40
+    ';'  shift, and go to state 41
+
+
+State 20
+
+   20 Expression: DatatypeAssignments •
+
+    $default  reduce using rule 20 (Expression)
+
+
+State 21
+
+   23 DatatypeAssignments: Assignments •
+
+    $default  reduce using rule 23 (DatatypeAssignments)
+
+
+State 22
+
+   24 Assignments: ExpressionLoop •
+
+    $default  reduce using rule 24 (Assignments)
+
+
+State 23
+
+   26 ExpressionLoop: LogicalAndAritmeticExpression •
+   27               | LogicalAndAritmeticExpression • '?' ExpressionLoop ':' ExpressionLoop
+
+    '?'  shift, and go to state 42
+
+    $default  reduce using rule 26 (ExpressionLoop)
+
+
+State 24
+
+   28 LogicalAndAritmeticExpression: Term • AND Term
+   29                              | Term • OR Term
+   30                              | Term • EE Term
+   31                              | Term • NE Term
+   32                              | Term • LE Term
+   33                              | Term • GE Term
+   34                              | Term • '<' Term
+   35                              | Term • '>' Term
+   36                              | Term • '|' Term
+   37                              | Term • '&' Term
+   38                              | Term • '^' Term
+   39                              | Term • '+' Term
+   40                              | Term • '-' Term
+   41                              | Term • '*' Term
+   42                              | Term • '/' Term
+   43                              | Term • '%' Term
+   47                              | Term • UP
+   48                              | Term • UM
+   49                              | Term •
+
+    OR   shift, and go to state 43
+    AND  shift, and go to state 44
+    EE   shift, and go to state 45
+    NE   shift, and go to state 46
+    '<'  shift, and go to state 47
+    '>'  shift, and go to state 48
+    GE   shift, and go to state 49
+    LE   shift, and go to state 50
+    '+'  shift, and go to state 51
+    '-'  shift, and go to state 52
+    '*'  shift, and go to state 53
+    '/'  shift, and go to state 54
+    '%'  shift, and go to state 55
+    UP   shift, and go to state 56
+    UM   shift, and go to state 57
+    '|'  shift, and go to state 58
+    '&'  shift, and go to state 59
+    '^'  shift, and go to state 60
+
+    $default  reduce using rule 49 (LogicalAndAritmeticExpression)
+
+
+State 25
+
+   52 Term: '-' NUMBER •
+
+    $default  reduce using rule 52 (Term)
+
+
+State 26
+
+   53 Term: '-' IDENTIFIER •
+
+    $default  reduce using rule 53 (Term)
+
+
+State 27
+
+   51 Term: IDENTIFIER •
+
+    $default  reduce using rule 51 (Term)
+
+
+State 28
+
+   44 LogicalAndAritmeticExpression: '!' Term •
+
+    $default  reduce using rule 44 (LogicalAndAritmeticExpression)
+
+
+State 29
+
+   45 LogicalAndAritmeticExpression: UP Term •
+
+    $default  reduce using rule 45 (LogicalAndAritmeticExpression)
+
+
+State 30
+
+   46 LogicalAndAritmeticExpression: UM Term •
+
+    $default  reduce using rule 46 (LogicalAndAritmeticExpression)
+
+
+State 31
+
+   21 Expression: Expression • ',' DatatypeAssignments
+   54 Term: '(' Expression • ')'
+
+    ','  shift, and go to state 40
+    ')'  shift, and go to state 61
+
+
+State 32
+
+   25 Assignments: IDENTIFIER '=' • Assignments
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+
+    Assignments                    go to state 62
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 33
+
+   22 DatatypeAssignments: DATATYPE Assignments •
+
+    $default  reduce using rule 22 (DatatypeAssignments)
+
+
+State 34
+
+   12 Statement: '{' '}' •
+
+    $default  reduce using rule 12 (Statement)
+
+
+State 35
+
+   19 StatementList: Statement •
+
+    $default  reduce using rule 19 (StatementList)
+
+
+State 36
+
+   11 Statement: '{' StatementList • '}'
+   18 StatementList: StatementList • Statement
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    IF          shift, and go to state 6
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+    WHILE       shift, and go to state 10
+    '{'         shift, and go to state 11
+    '}'         shift, and go to state 63
+    ';'         shift, and go to state 12
+
+    IfStmt                         go to state 13
+    If                             go to state 14
+    WhileLoop                      go to state 15
+    While                          go to state 16
+    Statement                      go to state 64
+    Expressions                    go to state 18
+    Expression                     go to state 19
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 37
+
+    1 IfStmt: If '(' • Expression ')' Then Statement Done
+    2       | If '(' • Expression ')' Then Statement Done Else Statement
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+
+    Expression                     go to state 65
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 38
+
+    7 WhileLoop: While '(' • Expression ')' Then1 Statement Done1
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+
+    Expression                     go to state 66
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 39
+
+    0 $accept: Statement $end •
+
+    $default  accept
+
+
+State 40
+
+   21 Expression: Expression ',' • DatatypeAssignments
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+
+    DatatypeAssignments            go to state 67
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 41
+
+   17 Expressions: Expression ';' •
+
+    $default  reduce using rule 17 (Expressions)
+
+
+State 42
+
+   27 ExpressionLoop: LogicalAndAritmeticExpression '?' • ExpressionLoop ':' ExpressionLoop
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    ExpressionLoop                 go to state 68
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 43
+
+   29 LogicalAndAritmeticExpression: Term OR • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 69
+
+
+State 44
+
+   28 LogicalAndAritmeticExpression: Term AND • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 70
+
+
+State 45
+
+   30 LogicalAndAritmeticExpression: Term EE • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 71
+
+
+State 46
+
+   31 LogicalAndAritmeticExpression: Term NE • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 72
+
+
+State 47
+
+   34 LogicalAndAritmeticExpression: Term '<' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 73
+
+
+State 48
+
+   35 LogicalAndAritmeticExpression: Term '>' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 74
+
+
+State 49
+
+   33 LogicalAndAritmeticExpression: Term GE • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 75
+
+
+State 50
+
+   32 LogicalAndAritmeticExpression: Term LE • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 76
+
+
+State 51
+
+   39 LogicalAndAritmeticExpression: Term '+' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 77
+
+
+State 52
+
+   40 LogicalAndAritmeticExpression: Term '-' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 78
+
+
+State 53
+
+   41 LogicalAndAritmeticExpression: Term '*' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 79
+
+
+State 54
+
+   42 LogicalAndAritmeticExpression: Term '/' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 80
+
+
+State 55
+
+   43 LogicalAndAritmeticExpression: Term '%' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 81
+
+
+State 56
+
+   47 LogicalAndAritmeticExpression: Term UP •
+
+    $default  reduce using rule 47 (LogicalAndAritmeticExpression)
+
+
+State 57
+
+   48 LogicalAndAritmeticExpression: Term UM •
+
+    $default  reduce using rule 48 (LogicalAndAritmeticExpression)
+
+
+State 58
+
+   36 LogicalAndAritmeticExpression: Term '|' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 82
+
+
+State 59
+
+   37 LogicalAndAritmeticExpression: Term '&' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 83
+
+
+State 60
+
+   38 LogicalAndAritmeticExpression: Term '^' • Term
+
+    '-'         shift, and go to state 1
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    Term  go to state 84
+
+
+State 61
+
+   54 Term: '(' Expression ')' •
+
+    $default  reduce using rule 54 (Term)
+
+
+State 62
+
+   25 Assignments: IDENTIFIER '=' Assignments •
+
+    $default  reduce using rule 25 (Assignments)
+
+
+State 63
+
+   11 Statement: '{' StatementList '}' •
+
+    $default  reduce using rule 11 (Statement)
+
+
+State 64
+
+   18 StatementList: StatementList Statement •
+
+    $default  reduce using rule 18 (StatementList)
+
+
+State 65
+
+    1 IfStmt: If '(' Expression • ')' Then Statement Done
+    2       | If '(' Expression • ')' Then Statement Done Else Statement
+   21 Expression: Expression • ',' DatatypeAssignments
+
+    ','  shift, and go to state 40
+    ')'  shift, and go to state 85
+
+
+State 66
+
+    7 WhileLoop: While '(' Expression • ')' Then1 Statement Done1
+   21 Expression: Expression • ',' DatatypeAssignments
+
+    ','  shift, and go to state 40
+    ')'  shift, and go to state 86
+
+
+State 67
+
+   21 Expression: Expression ',' DatatypeAssignments •
+
+    $default  reduce using rule 21 (Expression)
+
+
+State 68
+
+   27 ExpressionLoop: LogicalAndAritmeticExpression '?' ExpressionLoop • ':' ExpressionLoop
+
+    ':'  shift, and go to state 87
+
+
+State 69
+
+   29 LogicalAndAritmeticExpression: Term OR Term •
+
+    $default  reduce using rule 29 (LogicalAndAritmeticExpression)
+
+
+State 70
+
+   28 LogicalAndAritmeticExpression: Term AND Term •
+
+    $default  reduce using rule 28 (LogicalAndAritmeticExpression)
+
+
+State 71
+
+   30 LogicalAndAritmeticExpression: Term EE Term •
+
+    $default  reduce using rule 30 (LogicalAndAritmeticExpression)
+
+
+State 72
+
+   31 LogicalAndAritmeticExpression: Term NE Term •
+
+    $default  reduce using rule 31 (LogicalAndAritmeticExpression)
+
+
+State 73
+
+   34 LogicalAndAritmeticExpression: Term '<' Term •
+
+    $default  reduce using rule 34 (LogicalAndAritmeticExpression)
+
+
+State 74
+
+   35 LogicalAndAritmeticExpression: Term '>' Term •
+
+    $default  reduce using rule 35 (LogicalAndAritmeticExpression)
+
+
+State 75
+
+   33 LogicalAndAritmeticExpression: Term GE Term •
+
+    $default  reduce using rule 33 (LogicalAndAritmeticExpression)
+
+
+State 76
+
+   32 LogicalAndAritmeticExpression: Term LE Term •
+
+    $default  reduce using rule 32 (LogicalAndAritmeticExpression)
+
+
+State 77
+
+   39 LogicalAndAritmeticExpression: Term '+' Term •
+
+    $default  reduce using rule 39 (LogicalAndAritmeticExpression)
+
+
+State 78
+
+   40 LogicalAndAritmeticExpression: Term '-' Term •
+
+    $default  reduce using rule 40 (LogicalAndAritmeticExpression)
+
+
+State 79
+
+   41 LogicalAndAritmeticExpression: Term '*' Term •
+
+    $default  reduce using rule 41 (LogicalAndAritmeticExpression)
+
+
+State 80
+
+   42 LogicalAndAritmeticExpression: Term '/' Term •
+
+    $default  reduce using rule 42 (LogicalAndAritmeticExpression)
+
+
+State 81
+
+   43 LogicalAndAritmeticExpression: Term '%' Term •
+
+    $default  reduce using rule 43 (LogicalAndAritmeticExpression)
+
+
+State 82
+
+   36 LogicalAndAritmeticExpression: Term '|' Term •
+
+    $default  reduce using rule 36 (LogicalAndAritmeticExpression)
+
+
+State 83
+
+   37 LogicalAndAritmeticExpression: Term '&' Term •
+
+    $default  reduce using rule 37 (LogicalAndAritmeticExpression)
+
+
+State 84
+
+   38 LogicalAndAritmeticExpression: Term '^' Term •
+
+    $default  reduce using rule 38 (LogicalAndAritmeticExpression)
+
+
+State 85
+
+    1 IfStmt: If '(' Expression ')' • Then Statement Done
+    2       | If '(' Expression ')' • Then Statement Done Else Statement
+
+    $default  reduce using rule 6 (Then)
+
+    Then  go to state 88
+
+
+State 86
+
+    7 WhileLoop: While '(' Expression ')' • Then1 Statement Done1
+
+    $default  reduce using rule 9 (Then1)
+
+    Then1  go to state 89
+
+
+State 87
+
+   27 ExpressionLoop: LogicalAndAritmeticExpression '?' ExpressionLoop ':' • ExpressionLoop
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 27
+
+    ExpressionLoop                 go to state 90
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 88
+
+    1 IfStmt: If '(' Expression ')' Then • Statement Done
+    2       | If '(' Expression ')' Then • Statement Done Else Statement
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    IF          shift, and go to state 6
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+    WHILE       shift, and go to state 10
+    '{'         shift, and go to state 11
+    ';'         shift, and go to state 12
+
+    IfStmt                         go to state 13
+    If                             go to state 14
+    WhileLoop                      go to state 15
+    While                          go to state 16
+    Statement                      go to state 91
+    Expressions                    go to state 18
+    Expression                     go to state 19
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 89
+
+    7 WhileLoop: While '(' Expression ')' Then1 • Statement Done1
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    IF          shift, and go to state 6
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+    WHILE       shift, and go to state 10
+    '{'         shift, and go to state 11
+    ';'         shift, and go to state 12
+
+    IfStmt                         go to state 13
+    If                             go to state 14
+    WhileLoop                      go to state 15
+    While                          go to state 16
+    Statement                      go to state 92
+    Expressions                    go to state 18
+    Expression                     go to state 19
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 90
+
+   27 ExpressionLoop: LogicalAndAritmeticExpression '?' ExpressionLoop ':' ExpressionLoop •
+
+    $default  reduce using rule 27 (ExpressionLoop)
+
+
+State 91
+
+    1 IfStmt: If '(' Expression ')' Then Statement • Done
+    2       | If '(' Expression ')' Then Statement • Done Else Statement
+
+    $default  reduce using rule 5 (Done)
+
+    Done  go to state 93
+
+
+State 92
+
+    7 WhileLoop: While '(' Expression ')' Then1 Statement • Done1
+
+    $default  reduce using rule 10 (Done1)
+
+    Done1  go to state 94
+
+
+State 93
+
+    1 IfStmt: If '(' Expression ')' Then Statement Done •
+    2       | If '(' Expression ')' Then Statement Done • Else Statement
+
+    ELSE  shift, and go to state 95
+
+    $default  reduce using rule 1 (IfStmt)
+
+    Else  go to state 96
+
+
+State 94
+
+    7 WhileLoop: While '(' Expression ')' Then1 Statement Done1 •
+
+    $default  reduce using rule 7 (WhileLoop)
+
+
+State 95
+
+    4 Else: ELSE •
+
+    $default  reduce using rule 4 (Else)
+
+
+State 96
+
+    2 IfStmt: If '(' Expression ')' Then Statement Done Else • Statement
+
+    '-'         shift, and go to state 1
+    '!'         shift, and go to state 2
+    UP          shift, and go to state 3
+    UM          shift, and go to state 4
+    '('         shift, and go to state 5
+    IF          shift, and go to state 6
+    NUMBER      shift, and go to state 7
+    IDENTIFIER  shift, and go to state 8
+    DATATYPE    shift, and go to state 9
+    WHILE       shift, and go to state 10
+    '{'         shift, and go to state 11
+    ';'         shift, and go to state 12
+
+    IfStmt                         go to state 13
+    If                             go to state 14
+    WhileLoop                      go to state 15
+    While                          go to state 16
+    Statement                      go to state 97
+    Expressions                    go to state 18
+    Expression                     go to state 19
+    DatatypeAssignments            go to state 20
+    Assignments                    go to state 21
+    ExpressionLoop                 go to state 22
+    LogicalAndAritmeticExpression  go to state 23
+    Term                           go to state 24
+
+
+State 97
+
+    2 IfStmt: If '(' Expression ')' Then Statement Done Else Statement •
+
+    $default  reduce using rule 2 (IfStmt)

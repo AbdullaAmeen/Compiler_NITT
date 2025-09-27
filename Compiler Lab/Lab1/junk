@@ -1,0 +1,39 @@
+if ( num1 < 66 ) {      //hello
+    x = y + 1;  /* what tf is actually
+ wrong with you    */
+}
+else {
+    num2 = num6 + 4;
+}
+
+
+
+"<"     {printf("< <,RELOP >");} 
+
+"<="    {printf("< <=,RELOP >");} 
+
+    
+
+"==" {printf("< ==,RELOP >");}
+
+"!="    {printf("< !=,RELOP >");}
+
+
+
+">" {printf("< >,RELOP >");}
+
+
+
+">=" {printf("< >=,RELOP >");}
+
+"++"    {printf("< ++, UADD >");}
+
+"--"    {printf("< ++, USUB >");}
+
+"+" {printf("< +, ADD >");}
+
+"-" {printf("< -, SUB >");}
+
+"/" {printf("< /, DIV >");}
+
+"*" {printf("< *, MUL >");}

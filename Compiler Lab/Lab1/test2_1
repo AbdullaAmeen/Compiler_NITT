@@ -1,0 +1,12 @@
+ //a sample dirty c program
+int main()
+{
+    char abcdefghijklmasddddsdfsdfaaaaaaaaaaaaaaaaaasddddd =                  30; //hello
+    char 1baa& = 40;/*hi
+     this is a multiline comment
+    */
+    char c =       10;
+    char d = (a *     b) / c;
+    printf ("%d     //    s", d);
+    return 0;
+}

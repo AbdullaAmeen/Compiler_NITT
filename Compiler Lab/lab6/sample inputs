@@ -1,0 +1,22 @@
+{
+    while(exp){
+        stmt1 
+        stmt2
+        stmt3
+        stmt4
+    }
+    stmt5
+}
+
+
+{
+    if(exp)
+    {
+        stmt1 stmt2 stmt3
+    }
+    else{
+        stmt4 stmt5
+    }
+    stmt6
+    
+}

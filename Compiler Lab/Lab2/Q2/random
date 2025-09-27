@@ -1,0 +1,22 @@
+
+T :
+	dataType ID ';' {}
+	| dataType ID '=' INT ';' {}
+	| dataType ID '=' FLOAT ';' {}
+	| dataType ID '=' CHAR ';' {}
+	| dataType ID ARRAY ';' {}
+	| T ',' ID ';' {}
+	|T ','  ID '=' INT ';' {}
+	|T ','  ID '=' FLOAT ';' {}
+	|T ','  ID '=' CHAR ';' {}
+	|T ','  ID ARRAY ';' {};
+3
+
+
+
+array 	"["{INT}"]" 
+
+
+{array}		{int n = strlen(yytext); char buffer[n-1]; strncpy(buffer, yytext+1, n-2); buffer[n-2]='\0';printf("Array %s", buffer); yylval = buffer; return ARRAY}
+
+

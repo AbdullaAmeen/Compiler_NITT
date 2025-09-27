@@ -1,0 +1,90 @@
+
+"<"     {printf(" < <,RELOP > ");} 
+
+"<="    {printf(" < <=,RELOP > ");} 
+
+"==" {printf(" < ==,RELOP > ");}
+
+"!="    {printf(" < !=,RELOP > ");}
+
+">" {printf(" < >,RELOP > ");}
+
+">=" {printf(" < >=,RELOP > ");}
+
+
+
+
+"&&" {printf(" < &&,AND > ");}
+
+"||" {printf(" < ||,OR > ");}
+
+"!" {printf(" < !,NOT > ");}
+
+
+
+
+
+"+" {printf(" < +, ADD > ");}
+
+"-" {printf(" < -, SUB > ");}
+
+"/" {printf(" < /, DIV > ");}
+
+"*" {printf(" < *, MUL > ");}
+
+"="    printf(" < %s, ASN >", yytext);
+
+
+
+
+
+
+
+"++"    {printf(" < ++, UADD > ");}
+
+"--"    {printf(" < ++, USUB > ");}
+
+
+
+
+
+
+"<"     {return RELOPLT;} 
+
+"<="    {return RELOPLTE;} 
+
+"==" {return RELOPE;}
+
+"!="    {return RELOPNE;}
+
+">" {return RELOPLT;}
+
+">=" {return RELOPLTE;}
+
+"&&" {return BOOLAND;}
+
+"||" {return BOOLOR;}
+
+"!" {return BOOLNOT;}
+
+"+" {return PLUS;}
+
+"-" {return MINUS}
+
+"/" {return DIV;}
+
+"*" {return MUL;}
+
+"="    {return ASIGN};
+
+.		 { return yytext[0]; }
+
+
+
+
+
+
+
+"++"    {return UINC;}
+
+"--"    {return UDEC;} 

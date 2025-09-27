@@ -1,0 +1,13 @@
+if exp goto label0 
+jump label1
+label0:
+stmt1;
+if exp goto label2 
+jump label3
+label2:
+stmt2;
+label3
+goto label4
+label3
+stmt2;
+label4

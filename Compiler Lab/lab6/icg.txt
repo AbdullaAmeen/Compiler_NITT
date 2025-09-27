@@ -1,0 +1,16 @@
+if var0 = a > 5
+goto label0
+jmp label1
+label0:
+var0 = b + 1
+a = var0
+if var0 = a > 8
+goto label2
+jmp label3
+label2:
+var0 = a + 8
+a = var0
+label3:
+label3:
+var0 = a + 1
+b = var0

@@ -1,0 +1,9 @@
+if var0 = a > 1
+goto label0
+jmp label1
+label0:
+var0 = b + 1
+a = var0
+label1:
+var0 = a + 1
+b = var0
